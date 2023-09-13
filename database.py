@@ -12,14 +12,13 @@ engine = create_engine(
     })
 
 def load_jobs_from_db():
-  with engine.connect() as conn:
-    result = conn.execute(text("select * from jobs"))
-    jobs = []
-    for row in result.all():
-      row_dict = row._asdict()
-      jobs.append(row_dict)
-    return jobs
-
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM jobs"))
+        jobs = []
+        for row in result.all():
+            row_dict = row._asdict()
+            jobs.append(row_dict)
+        return jobs
 
 def load_job_from_db(id):
     with engine.connect() as conn:
@@ -33,4 +32,11 @@ def load_job_from_db(id):
         else:
             return row._asdict()  # Convert the single row to a dictionary
 
-
+def add_application_to_db(job_id, data):
+    with engine.connect() as conn:
+        query = text("INSERT INTO applications (job_id, full_name, email, linkedin_url) VALUES (:job_id, :full_name, :email, :linkedin_url)")
+        conn.execute(query,
+                     job_id=job_id,
+                     full_name=data['full_name'],  # Corrected variable name here
+                     email=data['email'],  # Corrected variable name here
+                     linkedin_url=data['linkedin_url'])  # Corrected variable name here
