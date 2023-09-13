@@ -20,3 +20,17 @@ def load_jobs_from_db():
       jobs.append(row_dict)
     return jobs
 
+
+def load_job_from_db(id):
+    with engine.connect() as conn:
+        result = conn.execute(
+            text("SELECT * FROM jobs WHERE id = :val"),
+            {"val": id}
+        )
+        row = result.fetchone()  # Use fetchone to get a single row
+        if row is None:
+            return None
+        else:
+            return row._asdict()  # Convert the single row to a dictionary
+
+
