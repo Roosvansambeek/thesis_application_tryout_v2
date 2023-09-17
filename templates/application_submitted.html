@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Application Submitted </title>
+    <title> Application Submitted for {{job['title']}}</title>
     {% include 'bootstrap.html' %}
     
   </head>
@@ -20,6 +20,20 @@
   
       <h4>Email </h4>
       <div> {{application['email']}}</div>
+
+      <h4>Linkedin_url </h4>
+      <div> {{application['linkedin_url']}}</div>
+
+      <h4>Education </h4>
+      <div> {{application['education']}}</div>
+
+      <h4>Work Experience </h4>
+      <div> {{application['work_experience']}}</div>
+
+      <h4>Resume URL </h4>
+      <div> {{application['resume_url']}}</div>
+
+      
     </div>  
   </body>
 </html>
